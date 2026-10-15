@@ -1,0 +1,17 @@
+embedding_size: 128
+n_layers: 2
+reg_weight: 0.00001
+require_pow: false
+
+
+DRM_weight: 1.0
+
+tau: 1.0
+
+
+sample_size: 200
+
+fairness_topk: 20
+fairness_user_chunk_size: 16
+
+inner_update_steps: 1

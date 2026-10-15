@@ -1,0 +1,41 @@
+gpu_id: 0
+use_gpu: true
+state: INFO
+seed: 2025
+reproducibility: true
+field_separator: "\t"
+data_path: "dataset/" 
+RATING_FIELD: rating
+TIME_FIELD: timestamp
+NEG_PREFIX: neg_
+LABEL_FIELD: label
+drop_filter_field: true
+
+metrics: ["Recall", "NDCG", "MRR", "P_Fair", "Disparity", "GiniIndex_Group"]
+topk: [20]
+valid_metric: NDCG@20
+disparity_mode: legacy_log
+
+eval_args:
+  split: {RS: [0.8, 0.1, 0.1]}
+  order: RO
+  group_by: user
+  mode: {valid: full, test: full}
+
+
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 1
+
+train_batch_size: 512
+
+eval_batch_size: 200000
+
+
+epochs: 1000
+eval_step: 5
+stopping_step: 20
+learning_rate: 0.001
+learning_rate_org: 0.001
+learning_rate_fair: 0.00001
+weight_decay: 0.0
